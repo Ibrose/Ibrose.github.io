@@ -1,9 +1,9 @@
 # Ibrose.github.io
 JungJunHo, Department of Information Systems, wryyyyy0525@naver.com
 
-Hwang 
+KyuSubHwang, Information department, kyusubhwang@hanyang.ac.kr
 
-Clemence 
+Millet Clemence, Electronic engineering, clemence.millet@edu.devinci.fr
 
 Title: NUGU Pokémon communicator and suggester for Pokémon-fan kids
 
