@@ -15,15 +15,25 @@ NUGU uses previous reply data and groups pokemon according to its data, and answ
 II. Datasets
 - Describing your dataset
 The recommendation algorithm will use Pokémon data which has dexnum, name, poppoint, wellknown, legendary, recent, sets, gen, prime, destype values. Each column is as follows:
+
 Dex: pokedex number of pokemon
+
 Name: name of pokemon(in Korean), the part where NUGU will actually speak.
+
 Poppoint: the popularity point, which will be used in decision. This value can be incremented, by user’s reply.
+
 Wellknown: is the pokemon well known or not. 1: Well-known, 0: Not well-known. Wellknown cases are those which are popular: Pikachu. Eevee, Snorlax, Charizard or so on, which even non-fans know.
+
 Legendary: is the pokemon legendary or not. 1: yes, 0: No.
+
 Recent: Is the pokemon appeared in recent games, for 4 years? 1: yes, 0: no.
+
 Sets: The evolving tree of pokemon. Same number, same group(ex: set 2 파이리-리자드-리자몽)
+
 Gen: pokemon generation, 1 to 8.
+
 Prime: The well known pokemon in its evolution tree. 1: Those pokemon will be used in the reply. 0: not used in reply, Only when there is a name in the previous replies. If there was a name in the reply, the value becomes 1.
+
 Destype: Type of design, total 17, which is:
 Long: Long shape, similar as a snake.
 Ghost: ghost like pokemon
