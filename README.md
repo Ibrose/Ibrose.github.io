@@ -21,6 +21,7 @@ Dex: pokedex number of pokemon
 Name: name of pokemon(in Korean), the part where NUGU will actually speak.
 
 Poppoint: the popularity point, which will be used in decision. This value can be incremented, by user’s reply.
+-Value of Poppoint: we will use 2 data, one is the popularity vote done by Pokémon Korea, which chooses top 10 of each generation. The other is the popularity vote to choose POTY, done by Pokémon Company. Both of which are official vote. For each top 10 of Pokémon Korea vote, we put scores per each rate: top 1 gets 10 points, top 2 gets 9 points, till top 10 gets 1 point. There are several pokemon who has multiple forms and get multiple ranks, in this case, we decreases the point to half except its highest rank. For example, if one got top 3, top 5, and top 7, it gets 8 +6(/2) +4(/2) =13. For the POTY vote result, similar to the before the score will be divided according to the score, but the POTY point will be decreased to half, round up under 0. For example, top 1 and top 2 gets 15 points, top 3 and 4 gets 14 points, till top 29 and 30 gets 1 point. I will add two data and divide by half(round up under 0) For example, if one got top 3, top 5, and top 7, it gets 8 +6(/2) +4(/2) =13, and got top 1 in POTY, the final score is (13 + (30/2)) /2 = 14.
 
 Wellknown: is the pokemon well known or not. 1: Well-known, 0: Not well-known. Wellknown cases are those which are popular: Pikachu. Eevee, Snorlax, Charizard or so on, which even non-fans know.
 
@@ -53,7 +54,6 @@ Doglike: Dog like pokemon, or canine animals(wolf, fox, etc) pokemon
 Animal: Animal(in real life) pokemon, excluding catlike, doglike.
 Amorph: Something like mud, liquid like, which does not have fixed shape.
 
-Value of Poppoint: we will use 2 data, one is the popularity vote done by Pokémon Korea, which chooses top 10 of each generation. The other is the popularity vote to choose POTY, done by Pokémon Company. Both of which are official vote. For each top 10 of Pokémon Korea vote, we put scores per each rate: top 1 gets 10 points, top 2 gets 9 points, till top 10 gets 1 point. There are several pokemon who has multiple forms and get multiple ranks, in this case, we decreases the point to half except its highest rank. For example, if one got top 3, top 5, and top 7, it gets 8 +6(/2) +4(/2) =13. For the POTY vote result, similar to the before the score will be divided according to the score, but the POTY point will be decreased to half, round up under 0. For example, top 1 and top 2 gets 15 points, top 3 and 4 gets 14 points, till top 29 and 30 gets 1 point. I will add two data and divide by half(round up under 0) For example, if one got top 3, top 5, and top 7, it gets 8 +6(/2) +4(/2) =13, and got top 1 in POTY, the final score is (13 + (30/2)) /2 = 14.
 
 III. Methodology
 - Explaining your choice of algorithms (methods)
