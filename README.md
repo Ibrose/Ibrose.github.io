@@ -1,9 +1,14 @@
 # Ibrose.github.io
 NUGU pokemon recommendation program for kids
+
 Members: 
+
 JungJunHo, Department of Information Systems, wryyyyy0525@naver.com
+
 KyuSubHwang, Information department, kyusubhwang@hanyang.ac.kr
+
 Millet Clemence, Electronic engineering, clemence.millet@edu.devinci.fr
+
 I. Introduction
 - Motivation: Why are you doing this?
 1. Kids like someone else agreeing their opinions. Also, SKT made nugu limited pokemon version, so there will be many pokemon fans who bought NUGU. Besides, those who bought NUGU and use service for kids usually will be a pokemon fan, because many kids like pokemon.
@@ -71,8 +76,11 @@ Amorph: Something like mud, liquid like, which does not have fixed shape.
 
 III. Methodology
 - Explaining your choice of algorithms (methods)
+
 What we will use: collaborative filtering algorithm, decision tree algorithm.
+
 - Explaining features or code (if any)
+
 Nugu replies by answering questions below, as a decision tree.
 1) Which design type does user likes most(using destype)?
 2) Which generation does the user likes most? (1,2,3,4,5,6,7,8)
@@ -83,12 +91,17 @@ Nugu replies by answering questions below, as a decision tree.
 After all those questions, it makes suggestions that matches those and with highest poppoint values, by decision tree algorithm. 
 By talking with user, NUGU changes the popularity list by giving points to the answered pokemon.
 There is a list, which saves user’s reply, up to 20 and erases the oldest if it is over 20. If the user reply is over 3, NUGU starts reply with pokemon that is similar to the user’s reply. This is to increase the correctness of collaborative filtering algorithm, to prevent cold start problems.
+
 IV. Evaluation & Analysis
 - Graphs, tables, any statistics (if any)
+
 V. Related Work (e.g., existing studies)
 - Tools, libraries, blogs, or any documentation that you have used to do this project.
 https://pokemon2020.pokemon.com/en-us/
+
 https://pokemonkorea.co.kr/pokemon_25th/menu118
+
 Place I got data.
+
 VI. Conclusion: Discussion
 
