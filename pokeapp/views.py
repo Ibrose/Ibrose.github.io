@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.generic import View
 import pandas as pd
 import numpy as np
@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 from pprint import pprint
 import requests
 from flask import Flask, make_response, jsonify, current_app
-from flask import request
+#from flask import request
 from flask_restful import Resource, Api
 
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -25,6 +25,7 @@ def cos_sim(A, B): # cosine similarity function
     return np.dot(A, B)/(np.linalg.norm(A)*np.linalg.norm(B))
 
 def poke_recommend(poke):
+    
     if poke in pokelist: # if pokemon exists in the list
         poke_idx = pokelist.index(poke)
         poke_sim = []
@@ -35,9 +36,9 @@ def poke_recommend(poke):
         poke_out = [pokelist[poke_sim[1][0]], pokelist[poke_sim[2][0]], pokelist[poke_sim[3][0]]] # find 3 most similar pokemons(first is identical pokemon)
         poke_ret.append(poke_out)
         poke_ret.append(poke_sim)
-        return poke_ret # list consists of 2 elements, 1st: recommended pokemon lists, 2nd: 
+        return poke_ret 
     else:
-        # NUGU recall "다시 한 번 포켓몬을 말씀해주세요"
+            # NUGU recall "다시 한 번 포켓몬을 말씀해주세요"
         return None
 def difgen_recommend(poke):
     if poke in pokelist: # if pokemon exists in the list
@@ -69,41 +70,53 @@ dfpok = pd.read_csv('./pokedataused/pokedatacos2.csv')
 dfusr = pd.read_csv('./pokedataused/pseudouser.csv')
 dfpokso = pd.read_csv('./pokedataused/train241.csv')
 df = pd.read_csv('./pokedataused/cospokysptn.csv')'''
-app = Flask(__name__)
-api = Api(app)#외부에서 접속 되려면 python manage.py runserver 0.0.0.0:8000
 
-#@app.route('/poketalk', methods= ['POST'])
+def healthCheck(self):
+    return "OK"
+def initAction(self):
+    
+    return HttpResponse("OK")
+
+
+#app = Flask(__name__)
+#app.config['JSON_AS_ASCII'] = False
+#외부에서 접속 되려면 python manage.py runserver 0.0.0.0:8000 loc: http://34.64.155.210:8000/poketalk
+#api = Api(app)
+#@app.route('/pokeinput', methods= ['GET'])
 #with app.app_context():
 class arceus(Resource):#APIView
     
-    global pokenametrans
-    pokenametrans = ("./configure_package/pokenametrans.json")
-    def healthCheck():
-        return "OK"
-    def post(self, pokee): #returning replies
+    def __init__(self, name):
+        self.name = name
+    
+    def get(request): #returning replies
         #poke = request.POST.get["pokname"]
         #poke = json.loads(request.body)
         
-        porke = request.get_json()
-        print(porke)    
-        pokename = pokenametrans(porke)
+        #'''porke = request.get_json()
+            
+        #pokename = porke['action']['parameters']['NAMEOPOKE']['value']'''
         
-        pokereply = poke_recommend(pokename)
-        pokereply = poke_recommend(porke)#sample
+        #pokemob = request.get_json(force=True)#error
+        pokemob = json.loads(request.body, encoding="utf-8")
+        pokemonname = pokemob['action']['parameters']['pokemonname']['value']
+        pokereply = poke_recommend(pokemonname)
+        
         response_builder = {
             "version": "2.0",
             "resultCode": "OK",
             "output": {
-                "pokemonreply1": pokereply[0],
-                "pokemonreply2": pokereply[1],
-                "pokemonreply3": pokereply[2],
-             },
+                    "pokemonreply1": pokereply[0][0],
+                    "pokemonreply2": pokereply[0][1],
+                    "pokemonreply3": pokereply[0][2],
+            },
         }
-        return jsonify(response_builder)
-api.add_resource(arceus, '/')
-if __name__ == "__main__":
-    app.run(debug=True)
-{
+        return JsonResponse(response_builder)
+#api.add_resource(arceus, '/pokeinput/',endpoint='/pokeinput/')
+#if __name__ == "__main__":
+#    app.run()
+
+'''{
     "version": "2.0",
     "action": {
          "actionName": "",#액션의 이름
@@ -118,7 +131,7 @@ if __name__ == "__main__":
                }
           }
     }
-}
+}'''
 #poke_out =[]
 '''poke_out = poke_recommend(poke)[0] # recommended 3 pokemons
 
