@@ -25,7 +25,7 @@ SECRET_KEY = 'w04w4oa6)2=v02y4yiyr&uuta$^uuk97+ke7#5rjw5#4)8k#l#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0", "61.74.155.247"]
+ALLOWED_HOSTS = ["*"]
 #ALLOWED_HOSTS = ["127.0.0.1"]내부 ip: 10.182.0.2, 외부 ip: 34.64.236.11 sudo su로 내 컴 접속
 #user wryyyyy0525 passwd crowned
 # Application definition
@@ -46,7 +46,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',uu
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',

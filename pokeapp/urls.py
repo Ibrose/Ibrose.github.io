@@ -17,10 +17,13 @@ from django.contrib import admin
 from django.conf.urls import include, url
 from django.urls import path
 from . import views as pokeviews
+from .views import arceus
 from flask import request
 urlpatterns = [
     
-    path('', pokeviews.arceus),
+    path('', pokeviews.arceus.as_view(name = 'ddd')),
+    #path('/initAction', pokeviews.arceus.initAction),#initAction an
+    path('/pokeinput', pokeviews.arceus.get),
     #path('', pokeviews.arceus.as_view(request)),
     
     
