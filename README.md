@@ -14,29 +14,29 @@ Millet Clemence, Department of Electronic engineering, <clemence.millet@edu.devi
 # CONTENTS
 I. Introduction	 
 
-A.	Motivation: Why are you doing this?
+>1.	Motivation: Why are you doing this?
 
-B.	Goal: What do you want to see at the end?	 
+>2.	Goal: What do you want to see at the end?	 
 
 II. Datasets	
 
-A.	Dataset description	
+>1.	Dataset description	
 
 III. Methodology	
 
-A.	Algorithm explanation	
+>1.	Algorithm explanation	
 
-B.	Code Explanation	 
+>2.	Code Explanation	 
 
-C.	NUGU play builder	
+>3.	NUGU play builder	
 
 IV. Evaluation & Analysis	 
 
-A.	Data Analysis	 
+>1.	Data Analysis	 
 
-B.	Prediction Model	
+>2.	Prediction Model	
 
-C.	Accuracy Estimation	
+>3.	Accuracy Estimation	
 
 V. Related Work	 
 
@@ -45,18 +45,18 @@ VI. Conclusion
 
 
 # I. Introduction
-1. ## Motivation: Why are you doing this?
+## 1. Motivation: Why are you doing this?
 >1. Kids like someone else agreeing their opinions. Also, SKT made nugu limited pokemon version, so there will be many pokemon fans who bought NUGU. Besides, those who bought NUGU and use service for kids usually will be a pokemon fan, because many kids like pokemon.
 
 >2. While listening to SKT lectures, there were mentions that NUGU services kid content(pink-pong & pokemon) and my younger cousin mentioned that ‘there is a pokemon popularity vote and you should apply it’. So I made this suggestion.
 
-2. ## Goal: What do you want to see at the end?
+## 2. Goal: What do you want to see at the end?
 >NUGU uses previously sorted data and checks cosine similarity of pokemon according to its data, and answer based on this data.
 
 
 
 # II. Datasets
-1. ## Dataset description
+## 1. Dataset description
 The recommendation algorithm will use Pokémon data which has dexnum, name, poppoint, wellknown, legendary, recent, sets, gen, prime, destype values. All of those are the data which is used in official pokemon site. Each column is as follows:
 
 - Dex: pokedex number of pokemon
@@ -97,7 +97,7 @@ We originally saved data as string, but since it didn’t fit in to cosine simil
 
 
 # III. Methodology
-1. ## Algorithm explanation
+## 1. Algorithm explanation
 We made pokedata.csv file, where we save all those pokemon data. We will use those data to get similar pokemon and reply back.
 
 What we will use to calculate similarity: Cosine Similarity
@@ -111,7 +111,7 @@ Nugu uses all those data above, to check pokemon with similar data as input poke
 
 For example, this is the result of similar pokemon of Bulbasaur(이상해씨), we got 6 pokemon names and made it as graph. We will get top 3 most similar pokemon and return to NUGU and say it. 
 
-1. ## Code Explanation
+## 2. Code Explanation
 
 In this part, we get pokedata.csv file and save it as data. Also, we get the name values in data and make it as pokelist.
 
@@ -121,7 +121,7 @@ In this class arceus, we get json request, get what we want, and reply back as j
 
 
 
-1. ## NUGU play builder 
+## 3. NUGU play builder 
 
 This is the total structure of our tree. By pokestart, NUGU starts the program. Using answer.pokemon NUGU asks the user to say the pokemon one likes, and according to reply, if it is correct input it goes to pokeinput and reply back, but if it is wrong, it goes to errorcase.
 
@@ -140,10 +140,10 @@ For this part, we made responding sentence using backend parameters to reply, so
 
 
 # IV. Evaluation & Analysis
-1. ## Data Analysis
+## 1. Data Analysis
 
 Scatter plot was used to observe relationships between input pokemon(x-axis) and output pokemon(y-axis) which had the second largest cosine similarity values (Since the first was the input pokemon itself, it was not considered). 
-1. ## Prediction Model
+## 2. Prediction Model
 
 As the raw scatter plot seemed to have linear correlation, we created linear regression neuron based on gradient descent to create a prediction model. The neuron tries to find out the optimum linear function that could explain the linear correlation between pokemons. By passing index of input pokemon and output pokemon, the neuron works as follows:
 
@@ -160,7 +160,7 @@ As the raw scatter plot seemed to have linear correlation, we created linear reg
 1. Fit(): first calls forpass() to calculate y\_hat and error, then calls backprop() to get gradients of weights and bias. Finally update neuron’s weight and bias. This is an iteration process over arbitrarily set epochs.
 
 
-1. ## Accuracy Estimation
+## 3. Accuracy Estimation
 #To be updated…
 
 MAP@K 공식(모든 유저에 대한 Average Precision 값의 평균 → 추천 시스템의 성능)을 활용하여 정확도를 계산할 예정
