@@ -103,18 +103,19 @@ We made pokedata.csv file, where we save all those pokemon data. We will use tho
 What we will use to calculate similarity: Cosine Similarity
 
 Cosine similarity measures the similarity between two vectors of an inner product space. It is measured by the cosine of the angle between two vectors and determines whether two vectors are pointing in roughly the same direction. It is often used to measure document similarity in text analysis. (Jiawei Han, Jian Pei, in Data Mining, 2012)
-
-
+<img src="https://user-images.githubusercontent.com/81448385/144530339-aa475a48-9455-499c-b8ab-be6bc496cae7.png"/>
+<img src="https://user-images.githubusercontent.com/81448385/144530541-df45fbe3-42b3-422e-a3fc-2494f7e20e3c.png"/>
 
 Nugu uses all those data above, to check pokemon with similar data as input pokemon. It gets pokemon data in csv file and save it as data. And it gets the ‘name’ column of data, where the name of every pokemon is saved. In the poke\_recommend function, it calculates cosine similarity of the input and 898 pokemon’s data, from third column to the last (poppoint, wellknown, legendary, recent, sets, gen, prime, destype) by using cos\_sim function and save it into list poke\_sim. In the poke\_sim[0], it saves names of pokemon, and in poke\_sim[1], it saves cosine similarities. After it is done, we sort it according to poke\_sim[1], by using ‘key = lambda x: x[1]’. Also, we want the bigger similarities to come first so we set reverse = True. To get three pokemon that has highest similarity, we save pokelist[pokesim[1][0]], pokelist[pokesim[2][0]], pokelist[pokesim[3][0]], and save it as poke\_out. We do not get pokelist[pokesim[0][0]] since it will be the input pokemon itself. So we save those three in poke\_ret[0] and cosine similarities (poke\_sim) in poke\_ret[1] and return poke\_ret.
 
-
+<img src="https://user-images.githubusercontent.com/81448385/144530631-cdcbed2f-28e3-4871-a419-67312b624c40.png"/>
 For example, this is the result of similar pokemon of Bulbasaur(이상해씨), we got 6 pokemon names and made it as graph. We will get top 3 most similar pokemon and return to NUGU and say it. 
 
 ## 2. Code Explanation
-
+<img src="https://user-images.githubusercontent.com/81448385/144530776-710ed075-6c46-40c5-9788-65271a6a4384.PNG"/>
 In this part, we get pokedata.csv file and save it as data. Also, we get the name values in data and make it as pokelist.
 
+<img src="https://user-images.githubusercontent.com/81448385/144530869-2b70618b-26b8-4a57-8cea-ab299720bfe4.PNG"/>
 In this class arceus, we get json request, get what we want, and reply back as json. The def \_\_init\_\_ is used like that since it is needed. The get method is the actual function. It gets the request from NUGU. It gets body of request, encoding it to utf-8(to read Korean languages) and save it as pokemob. To get the actual value of requested pokemon name, we get pokemob[‘action’][‘parameters’][‘pokemonname’(this part value is named as pokemonname in play Builder, so we use so’)][‘value’] and save it to pokemonname. We input this value to poke\_reommend and get recommendation and save it to pokereply. By using response\_builder, we make the reply and JsonResponse it, to make it as json and reply back to NUGU.
 
 
@@ -123,38 +124,42 @@ In this class arceus, we get json request, get what we want, and reply back as j
 
 ## 3. NUGU play builder 
 
+<img src="https://user-images.githubusercontent.com/81448385/144530967-19bf3eb9-995c-4fd4-9e9c-24ba97231100.PNG"/>
 This is the total structure of our tree. By pokestart, NUGU starts the program. Using answer.pokemon NUGU asks the user to say the pokemon one likes, and according to reply, if it is correct input it goes to pokeinput and reply back, but if it is wrong, it goes to errorcase.
 
-
+<img src="https://user-images.githubusercontent.com/81448385/144531061-06b7fa7a-ad26-4799-8212-9bcd904a6f65.PNG"/>
+<img src="https://user-images.githubusercontent.com/81448385/144531069-76e3d823-adec-4574-b1fa-1ff22b715d48.PNG"/>
 In pokestart, it gets user comment like ‘start the pokemon recommender’ and similar sentences, which has the poketalk entity, which is pokemon. And for user’s pokemon name input, I set pokename and Nameopoke, both are the 898 names of pokemon.
 
+<img src="https://user-images.githubusercontent.com/81448385/144531291-f06c2b50-b8ac-460a-bea3-611dcfa588c1.PNG"/>
 In the pokeinput, I set the sending data as pokemonname, which is the user’s input nameopoke. 
 
+<img src="https://user-images.githubusercontent.com/81448385/144531297-8a09b96e-8c85-4d0c-9ca2-787d5b005d15.PNG"/>
 For reply, we used backend proxy, and set backend parameters pokereply1, pokereply2, pokereply3, all of those are reply from backend server.
 
 For this part, we made responding sentence using backend parameters to reply, so our reply example are like following:
 
-
-
+<img src="https://user-images.githubusercontent.com/81448385/144531469-1f7e97b2-df86-490e-897b-72d8d90793c0.PNG"/>
+<img src="https://user-images.githubusercontent.com/81448385/144531462-6257df01-4622-486d-8621-bfdc498034c4.PNG"/>
 
 
 
 # IV. Evaluation & Analysis
 ## 1. Data Analysis
-
+<img src="https://user-images.githubusercontent.com/81448385/144531652-9576dc7a-6afa-4c14-8bf0-18cac2e285fd.png"/>
 Scatter plot was used to observe relationships between input pokemon(x-axis) and output pokemon(y-axis) which had the second largest cosine similarity values (Since the first was the input pokemon itself, it was not considered). 
 ## 2. Prediction Model
-
+<img src="https://user-images.githubusercontent.com/81448385/144531667-d693b9c5-0de2-4102-9be2-da4bfd0926a9.png"/>
 As the raw scatter plot seemed to have linear correlation, we created linear regression neuron based on gradient descent to create a prediction model. The neuron tries to find out the optimum linear function that could explain the linear correlation between pokemons. By passing index of input pokemon and output pokemon, the neuron works as follows:
 
-
+<img src="https://user-images.githubusercontent.com/81448385/144531869-1caab20a-e7c0-476f-99ce-7b9525e1eef8.png"/>
 
 1. Init(): initiation of weight and bias to 1.0
 1. Forpass(): For all samples, calculate y\_hat(prediction value) which is derived from w\*x+b
 1. Backprop(): To reduce the error between actual y value and predicted y\_hat value, backpropagation with a loss function which updates gradients of weight and bias is used. 
 
-\*Loss function used:
-
+ Loss function used: 
+<img src="https://user-images.githubusercontent.com/81448385/144532004-894bf6ed-37c9-4cb8-b5d9-460fbf31feb4.png"/>
 
 
 1. Fit(): first calls forpass() to calculate y\_hat and error, then calls backprop() to get gradients of weights and bias. Finally update neuron’s weight and bias. This is an iteration process over arbitrarily set epochs.
@@ -164,7 +169,7 @@ As the raw scatter plot seemed to have linear correlation, we created linear reg
 #To be updated…
 
 MAP@K 공식(모든 유저에 대한 Average Precision 값의 평균 → 추천 시스템의 성능)을 활용하여 정확도를 계산할 예정
-
+<img src="https://user-images.githubusercontent.com/81448385/144532164-37ebbcc3-c90c-47b2-88ff-e5e7c6251e8b.png"/>
 
 
 # V. Related Work
@@ -176,6 +181,7 @@ Place where I get Pokémon data:
 
 <https://pokemonkorea.co.kr/pokemon_25th/menu118>
 
+Data Mining, 2012 Jiawei Han, Jian Pei
 
 # VI. Conclusion
 데모 동영상 올리는 칸
