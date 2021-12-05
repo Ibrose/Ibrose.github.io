@@ -185,5 +185,5 @@ Data Mining, 2012 Jiawei Han, Jian Pei
 
 # VI. Conclusion
 데모 동영상 올리는 칸
-**PAGE11** / **NUMPAGES11**
+[Result video](https://youtu.be/z1DJiW_y-LA)
 
