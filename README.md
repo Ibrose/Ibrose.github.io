@@ -186,6 +186,7 @@ Place where I get Pokémon data:
 
 <https://pokemonkorea.co.kr/pokemon_25th/menu118>
 
+Data analysis, Prediction, Accuracy estimation learned from:    
 Data Mining, 2012 Jiawei Han, Jian Pei
 
 # VI. Conclusion
