@@ -47,30 +47,30 @@ VI. Conclusion
 
 # I. Introduction
 ## 1. Motivation: Why are you doing this?
->1. Kids like someone else agreeing their opinions. Also, SKT made limited version of nugu, that has pokemon image on the surface, so there will be many pokemon fans who bought NUGU. Besides, those who bought NUGU and use service for kids usually will be a pokemon fan, because many kids like pokemon.
+>1. Kids like giving their opinions on what they like, and we thought it could be fun to make them exchange with the NUGU speaker about a topic they like. Also, SKT made a limited edition of a Pokémon NUGU speaker, so obviously Pokémon fans who buy this NUGU speaker edition would be interested in our product. Besides, because many kids like Pokémon, parents who would buy NUGU would be much likely to use our service for their kids.
 
->2. While listening to SKT lectures, there were mentions that NUGU services kid content(pink-pong & pokemon) and my younger cousin mentioned that ‘there is a pokemon popularity vote and you should apply it’. So I made this suggestion.
+>2. While listening to SKT lectures, there was a mention about NUGU services for kids, for example ping-pong and Pokémon. Jung Jun Ho also said that his little cousin mentioned a Pokémon popularity vote and said it would be fun to use it in our AI project. So, this is how the idea came.
 
 ## 2. Goal: What do you want to see at the end?
->NUGU uses previously sorted data and checks cosine similarity of pokemon according to its data, and answer based on this data.
+>We would like NUGU speaker to be able to recommend to the user a Pokémon that he could like based on its preferences.
 
 
 
 # II. Datasets
 ## 1. Dataset description
-The recommendation algorithm will use Pokémon data which has dexnum, name, poppoint, wellknown, legendary, recent, sets, gen, prime, destype values. All of those are the data which is used in official pokemon site. Each column is as follows:
+The recommendation algorithm will use Pokémon data which has dexnum, name, poppoint, wellknown, legendary, recent, sets, gen, prime, destype values. All of those are the data which is used in official pokemon game data. Here is the explanation of each parameter:
 
-- Dex: pokedex number of pokemon
-- Name: name of pokemon(in Korean), the part where NUGU will actually speak.
-- Poppoint: the popularity point, which will be used in decision. This value can be incremented, by user’s reply.
-    - Value of Poppoint: we will use 2 data, one is the popularity vote done by Pokémon Korea, which chooses top 10 of each generation. The other is the popularity vote to choose POTY, done by Pokémon Company. Both of which are official vote. For each top 10 of Pokémon Korea vote, we put scores per each rate: top 1 gets 10 points, top 2 gets 9 points, till top 10 gets 1 point. There are several pokemon who has multiple forms and get multiple ranks, in this case, we decreases the point to half except its highest rank. For example, if one got top 3, top 5, and top 7, it gets 8 +6(/2) +4(/2) =13. For the POTY vote result, similar to the before the score will be divided according to the score, but the POTY point will be decreased to half, round up under 0. For example, top 1 and top 2 gets 15 points, top 3 and 4 gets 14 points, till top 29 and 30 gets 1 point. I will add two data and divide by half(round up under 0) For example, if one got top 3, top 5, and top 7, it gets 8 +6(/2) +4(/2) =13, and got top 1 in POTY, the final score is (13 + (30/2)) /2 = 14. 
-- Wellknown: is the pokemon well known or not. 1: Well-known, 0: Not well-known. Wellknown cases are those which are popular: Pikachu. Eevee, Snorlax, Charizard or so on, which even non-fans know.
-- Legendary: is the pokemon legendary or not. 1: yes, 0: No.
-- Recent: Is the pokemon appeared in recent games, for 4 years? 1: yes, 0: no.
-- Sets: The evolving tree of pokemon. Same number, same group(ex: set 2 파이리-리자드-리자몽)
-- Gen: pokemon generation, 1 to 8.
-- Prime: The well known pokemon in its evolution group. 1: It is well known. 0: It isn’t. To be exact, I set those which are the lowest of each evolution group and below top 500 of POTY popularity vote.
-- Destype: Type of design, total 17, all from pokemon data files in pokemon game, which is:
+- dexnum: pokedex number of pokemon
+- name: name of pokemon(in Korean), the part where NUGU will actually speak.
+- poppoint: the popularity point, which will be used in decision. 
+    - Value of Poppoint: we will use 2 data, one is the popularity vote done by Pokémon Korea, which chooses top 10 of each generation. The other is the popularity vote to choose POTY, done by Pokémon Company. Both are official vote. For each top 10 of Pokémon Korea vote, we give a certain score that corresponds to the rating of each Pokémon: the 1st gets 10 points, the 2nd gets 9 points, till the 10th gets 1 point. The rest gets 0 points. There are several Pokémons that can be found in multiple forms and multiple ranks, in these cases, we reduce the number of points by half for these different forms and ranks. For the POTY vote result, the 1st and 2nd get 15 points, the 3rd and 4th get 14 points … and the 29th and 30th get 1 point. Finally, the total score of a Pokémon is the average of the 2 scores given by each vote. 
+- wellknown: is the pokemon well known or not. 1: Well-known, 0: Not well-known. Well-known Pokémons are the most popular ones Pikachu. Eevee, Snorlax, Charizard... Those that even non-fans know.
+- legendary: the Pokémon gets 1 point if it is a legendary Pokémon, otherwise it gets 0 points.
+- recent: the Pokémon gets 1 point if it appeared for the first time in games during the last 4 years, otherwise it gets 0 points.
+- sets: Pokémons can be part of an evolving tree. If Pokémons are in the same group, they get the same number (ex: set 2 파이리-리자드-리자몽)
+- gen: the Pokémon’s generation, goes from 1 to 8
+- prime: in one same evolution group the well-known Pokémons get 1 point, those are the ones that are in the top 500 of the POTY popularity vote.
+- destype: type of design, there are 17 in total :
     1. Long: Long shape, similar as a snake.
     2. Ghost: ghost like pokemon
     3. Mineral: Rock/Steel like pokemon, motive from minerals.
@@ -79,17 +79,17 @@ The recommendation algorithm will use Pokémon data which has dexnum, name, popp
     6. Bird: bird like pokemon
     7. Fish: Fish like pokemon, or whales. 
     8. Marine: Marine objects, invertebrate animal motives.
-    9. Water: Water-related pokemon, excluding fish and marine cases below.
+    9. Water: Water-related pokemon, excluding fish and marine cases above.
     10. Cute: Cute and adorable pokemon, such as Pikachu.
     11. Humanoid: Somewhat similar to human.
-    12. Monster: Designed somewhat like unrealistic monster.
+    12. Monster: Designed somewhat like an unrealistic monster.
     13. Grass: Grass, tree, fruit motive pokemon.
     14. Catlike: Cat like pokemon, or Felidae animals(tiger, lion, etc) pokemon
     15. Doglike: Dog like pokemon, or canine animals(wolf, fox, etc) pokemon
     16. Animal: Animal(in real life) pokemon, excluding catlike, doglike.
     17. Amorph: Something like mud, liquid like, which does not have fixed shape.
-
-We originally saved data as string, but since it didn’t fit in to cosine similarity easily, so we changed it to int value, to calculate easier. The number is a number in front of each design type (ex: Amorph: saved it as 17)
+    
+We originally saved data as string, but we changed it to int values because it is easier to work with when using cosine similarity. The number each number corresponds to a design type (ex: Amorph: saved it as 17)
 
 
 
@@ -99,7 +99,7 @@ We originally saved data as string, but since it didn’t fit in to cosine simil
 
 # III. Methodology
 ## 1. Algorithm explanation
-We made pokedata.csv file, where we save all those pokemon data. We will use those data to get similar pokemon and reply back.
+We made pokedata.csv file, where we save all those pokemon data. We will use this data to look for a Pokémon similar to the one given by the user.
 
 What we will use to calculate similarity: Cosine Similarity
 
@@ -107,7 +107,7 @@ Cosine similarity measures the similarity between two vectors of an inner produc
 <img src="https://user-images.githubusercontent.com/81448385/144530339-aa475a48-9455-499c-b8ab-be6bc496cae7.png"/>
 <img src="https://user-images.githubusercontent.com/81448385/144530541-df45fbe3-42b3-422e-a3fc-2494f7e20e3c.png"/>
 
-Nugu uses all those data above, to check pokemon with similar data as input pokemon. It gets pokemon data in csv file and save it as data. And it gets the ‘name’ column of data, where the name of every pokemon is saved. In the poke\_recommend function, it calculates cosine similarity of the input and 898 pokemon’s data, from third column to the last (poppoint, wellknown, legendary, recent, sets, gen, prime, destype) by using cos\_sim function and save it into list poke\_sim. In the poke\_sim[0], it saves names of pokemon, and in poke\_sim[1], it saves cosine similarities. After it is done, we sort it according to poke\_sim[1], by using ‘key = lambda x: x[1]’. Also, we want the bigger similarities to come first so we set reverse = True. To get three pokemon that has highest similarity, we save pokelist[pokesim[1][0]], pokelist[pokesim[2][0]], pokelist[pokesim[3][0]], and save it as poke\_out. We do not get pokelist[pokesim[0][0]] since it will be the input pokemon itself. So we save those three in poke\_ret[0] and cosine similarities (poke\_sim) in poke\_ret[1] and return poke\_ret.
+Nugu uses all those data above, to check pokemon with similar data as input pokemon. In the poke_recommend function, it calculates cosine similarity of every Pokémon’s data, but it uses only the data from the third column to the last one (poppoint, wellknown, legendary, recent, sets, gen, prime, destype), using cos_sim function and saving it into a list, poke_sim. In the poke_sim[0], it saves names of Pokémon, and in poke_sim[1], it saves cosine similarity values. After this is done, we sort the list according to poke_sim[1], by using ‘key = lambda x: x[1]’. Also, we want the bigger similarities to come first, so we set reverse = True. To get the three Pokémon that has the highest similarity, we save pokelist[pokesim[1][0]], pokelist[pokesim[2][0]], pokelist[pokesim[3][0]], and save it as poke_out. We do not save pokelist[pokesim[0][0]] since it will be the input Pokémon itself. So we save those three in poke_ret[0] and their cosine similarities (poke_sim) in poke_ret[1] and return poke_ret.
 
 <img src="https://user-images.githubusercontent.com/81448385/144530631-cdcbed2f-28e3-4871-a419-67312b624c40.png"/>
 For example, this is the result of similar pokemon of Bulbasaur(이상해씨), we got 6 pokemon names and made it as graph. We will get top 3 most similar pokemon and return to NUGU and say it. 
@@ -117,7 +117,7 @@ For example, this is the result of similar pokemon of Bulbasaur(이상해씨), w
 In this part, we get pokedata.csv file and save it as data. Also, we get the name values in data and make it as pokelist.
 
 <img src="https://user-images.githubusercontent.com/81448385/144530869-2b70618b-26b8-4a57-8cea-ab299720bfe4.PNG"/>
-In this class arceus, we get json request, get what we want, and reply back as json. The def \_\_init\_\_ is used like that since it is needed. The get method is the actual function. It gets the request from NUGU. It gets body of request, encoding it to utf-8(to read Korean languages) and save it as pokemob. To get the actual value of requested pokemon name, we get pokemob[‘action’][‘parameters’][‘pokemonname’(this part value is named as pokemonname in play Builder, so we use so’)][‘value’] and save it to pokemonname. We input this value to poke\_reommend and get recommendation and save it to pokereply. By using response\_builder, we make the reply and JsonResponse it, to make it as json and reply back to NUGU.
+In this class arceus, we get json request, get what we want, and reply back as json. The def \_\_init\_\_ is used like that since it is needed. The get method is the actual function. It gets the request from NUGU. It gets body of request, encoding it to utf-8(to read Korean languages) and save it as pokemob. To get the actual value of requested pokemon name, we get pokemob[‘action’][‘parameters’][‘pokemonname’][‘value’] and save it to pokemonname. We input this value to poke\_reommend and get recommendation and save it to pokereply. By using response\_builder, we make the reply and JsonResponse it, to make it as json and reply back to NUGU.
 
 
 
