@@ -167,10 +167,14 @@ As the raw scatter plot seemed to have linear correlation, we created linear reg
 
 
 ## 3. Accuracy Estimation
-#To be updated…
+#To be updated…   
+We made a reference to Precision model to calculate accuracy of our recommendation system. The precision model is one of the models to evaluate efficiency of recommendation systems   
+<img src="https://user-images.githubusercontent.com/81448385/145175492-2a337ceb-45ee-42da-95ee-10d5906a931b.png"/>   
 
-MAP@K 공식(모든 유저에 대한 Average Precision 값의 평균 → 추천 시스템의 성능)을 활용하여 정확도를 계산할 예정
-<img src="https://user-images.githubusercontent.com/81448385/144532164-37ebbcc3-c90c-47b2-88ff-e5e7c6251e8b.png"/>
+Based on the Linear Equation derived from the Linear Regression using gradient descent, we assign ‘True’ if the y hat value of the equation is inside a set which consists of 3 pokemon with highest cosine similarities and ‘False’ otherwise. Therefore, accuracy can be measured by True divided by Total case. 
+<img src="https://user-images.githubusercontent.com/81448385/145175824-f9c6f560-108f-4310-98b1-be1390fe7a9b.png"/>   
+In each epoch, forpass() and backpropagation() repeatedly updates weight and bias and recalculates the accuracy accordingly. Based on updated linear regression model, the accuracy started off 10% but somehow decreased to 5%. It seems that linear regression model shows its limits to properly reflect our dataset.   
+
 
 
 # V. Related Work
