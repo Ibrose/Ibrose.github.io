@@ -47,7 +47,7 @@ VI. Conclusion
 
 # I. Introduction
 ## 1. Motivation: Why are you doing this?
->1. Kids like someone else agreeing their opinions. Also, SKT made nugu limited pokemon version, so there will be many pokemon fans who bought NUGU. Besides, those who bought NUGU and use service for kids usually will be a pokemon fan, because many kids like pokemon.
+>1. Kids like someone else agreeing their opinions. Also, SKT made limited version of nugu, that has pokemon image on the surface, so there will be many pokemon fans who bought NUGU. Besides, those who bought NUGU and use service for kids usually will be a pokemon fan, because many kids like pokemon.
 
 >2. While listening to SKT lectures, there were mentions that NUGU services kid content(pink-pong & pokemon) and my younger cousin mentioned that ‘there is a pokemon popularity vote and you should apply it’. So I made this suggestion.
 
