@@ -29,7 +29,7 @@ III. Methodology
 
 >2.	Code Explanation	 
 
->3.	NUGU play builder	
+>3.	NUGU backend server	
 
 IV. Evaluation & Analysis	 
 
@@ -123,7 +123,7 @@ In this class arceus, we get json request, get what we want, and reply back as j
 
 
 
-## 3. NUGU play builder 
+## 3. NUGU backend server 
 
 <img src="https://user-images.githubusercontent.com/81448385/144530967-19bf3eb9-995c-4fd4-9e9c-24ba97231100.PNG"/>
 This is the total structure of our tree. By pokestart, NUGU starts the program. Using answer.pokemon NUGU asks the user to say the pokemon one likes, and according to reply, if it is correct input it goes to pokeinput and reply back, but if it is wrong, it goes to errorcase.
