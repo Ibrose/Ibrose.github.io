@@ -1,6 +1,7 @@
 # Ibrose.github.io
 **NUGU Pokemon Recommender for kids**
-
+데모 동영상   
+[Result video](https://youtu.be/byCFJoSztUE)
 
 Collaborators:
 
@@ -142,7 +143,8 @@ For this part, we made responding sentence using backend parameters to reply, so
 <img src="https://user-images.githubusercontent.com/81448385/144531469-1f7e97b2-df86-490e-897b-72d8d90793c0.PNG"/>
 <img src="https://user-images.githubusercontent.com/81448385/144531462-6257df01-4622-486d-8621-bfdc498034c4.PNG"/>
 
-
+데모 동영상   
+[Result video](https://youtu.be/byCFJoSztUE)
 
 # IV. Evaluation & Analysis
 ## 1. Data Analysis
