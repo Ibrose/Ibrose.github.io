@@ -159,7 +159,7 @@ As the raw scatter plot seemed to have linear correlation, we created linear reg
 1. Forpass(): For all samples, calculate y\_hat(prediction value) which is derived from w\*x+b
 1. Backprop(): To reduce the error between actual y value and predicted y\_hat value, backpropagation with a loss function which updates gradients of weight and bias is used. 
 
- Loss function used: 
+ Loss function used:    
 <img src="https://user-images.githubusercontent.com/81448385/144532004-894bf6ed-37c9-4cb8-b5d9-460fbf31feb4.png"/>
 
 
@@ -167,7 +167,7 @@ As the raw scatter plot seemed to have linear correlation, we created linear reg
 
 
 ## 3. Accuracy Estimation
-#To be updated…   
+
 We made a reference to Precision model to calculate accuracy of our recommendation system. The precision model is one of the models to evaluate efficiency of recommendation systems   
 <img src="https://user-images.githubusercontent.com/81448385/145175492-2a337ceb-45ee-42da-95ee-10d5906a931b.png"/>   
 
