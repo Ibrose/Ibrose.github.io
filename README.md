@@ -156,12 +156,12 @@ As the raw scatter plot seemed to have linear correlation, we created linear reg
 
 <img src="https://user-images.githubusercontent.com/81448385/144531869-1caab20a-e7c0-476f-99ce-7b9525e1eef8.png"/>
 
-1. Init(): initiation of weight and bias to 1.0
-2. Forpass(): For all samples, calculate y\_hat(prediction value) which is derived from w\*x+b
-3. Backprop(): To reduce the error between actual y value and predicted y\_hat value, backpropagation with a loss function which updates gradients of weight and bias is used.   
+   1. Init(): initiation of weight and bias to 1.0
+   2. Forpass(): For all samples, calculate y\_hat(prediction value) which is derived from w\*x+b
+   3. Backprop(): To reduce the error between actual y value and predicted y\_hat value, backpropagation with a loss function which updates gradients of weight and bias is used.   
  Loss function used:    
 <img src="https://user-images.githubusercontent.com/81448385/144532004-894bf6ed-37c9-4cb8-b5d9-460fbf31feb4.png"/>
-4. Fit(): first calls forpass() to calculate y\_hat and error, then calls backprop() to get gradients of weights and bias. Finally update neuron’s weight and bias. This is an iteration process over arbitrarily set epochs.
+   4. Fit(): first calls forpass() to calculate y\_hat and error, then calls backprop() to get gradients of weights and bias. Finally update neuron’s weight and bias. This is an iteration process over arbitrarily set epochs.
 
 
 ## 3. Accuracy Estimation
