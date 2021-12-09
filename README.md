@@ -148,22 +148,20 @@ For this part, we made responding sentence using backend parameters to reply, so
 # IV. Evaluation & Analysis
 ## 1. Data Analysis
 <img src="https://user-images.githubusercontent.com/81448385/144531652-9576dc7a-6afa-4c14-8bf0-18cac2e285fd.png"/>
-Scatter plot was used to observe relationships between input pokemon(x-axis) and output pokemon(y-axis) which had the second largest cosine similarity values (Since the first was the input pokemon itself, it was not considered). 
-## 2. Prediction Model
+Scatter plot was used to observe relationships between input pokemon(x-axis) and output pokemon(y-axis) which had the second largest cosine similarity values (Since the first was the input pokemon itself, it was not considered).    
+
+   ## 2. Prediction Model
 <img src="https://user-images.githubusercontent.com/81448385/144531667-d693b9c5-0de2-4102-9be2-da4bfd0926a9.png"/>
 As the raw scatter plot seemed to have linear correlation, we created linear regression neuron based on gradient descent to create a prediction model. The neuron tries to find out the optimum linear function that could explain the linear correlation between pokemons. By passing index of input pokemon and output pokemon, the neuron works as follows:
 
 <img src="https://user-images.githubusercontent.com/81448385/144531869-1caab20a-e7c0-476f-99ce-7b9525e1eef8.png"/>
 
 1. Init(): initiation of weight and bias to 1.0
-1. Forpass(): For all samples, calculate y\_hat(prediction value) which is derived from w\*x+b
-1. Backprop(): To reduce the error between actual y value and predicted y\_hat value, backpropagation with a loss function which updates gradients of weight and bias is used. 
-
+2. Forpass(): For all samples, calculate y\_hat(prediction value) which is derived from w\*x+b
+3. Backprop(): To reduce the error between actual y value and predicted y\_hat value, backpropagation with a loss function which updates gradients of weight and bias is used.   
  Loss function used:    
 <img src="https://user-images.githubusercontent.com/81448385/144532004-894bf6ed-37c9-4cb8-b5d9-460fbf31feb4.png"/>
-
-
-1. Fit(): first calls forpass() to calculate y\_hat and error, then calls backprop() to get gradients of weights and bias. Finally update neuron’s weight and bias. This is an iteration process over arbitrarily set epochs.
+4. Fit(): first calls forpass() to calculate y\_hat and error, then calls backprop() to get gradients of weights and bias. Finally update neuron’s weight and bias. This is an iteration process over arbitrarily set epochs.
 
 
 ## 3. Accuracy Estimation
