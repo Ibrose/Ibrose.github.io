@@ -170,8 +170,8 @@ We made a reference to Precision model to calculate accuracy of our recommendati
 <img src="https://user-images.githubusercontent.com/81448385/145175492-2a337ceb-45ee-42da-95ee-10d5906a931b.png"/>   
 
 Based on the Linear Equation derived from the Linear Regression using gradient descent, we assign ‘True’ if the y hat value of the equation is inside a set which consists of 3 pokemon with highest cosine similarities and ‘False’ otherwise. Therefore, accuracy can be measured by True divided by Total case. 
-<img src="https://user-images.githubusercontent.com/81448385/145175824-f9c6f560-108f-4310-98b1-be1390fe7a9b.png"/>   
-In each epoch, forpass() and backpropagation() repeatedly updates weight and bias and recalculates the accuracy accordingly. Based on updated linear regression model, the accuracy started off 10% but somehow decreased to 5%. It seems that linear regression model shows its limits to properly reflect our dataset.   
+<img src="https://user-images.githubusercontent.com/81448385/145533562-462a728b-c082-40a1-86fe-6890dbcd8986.PNG"/>   
+In each epoch, forpass()and backpropagation() repeatedly updates weight and bias, recalculating prediction and accuracy. The accuracy started as 1% and grows to 16% after 10 epochs
 
 
 
