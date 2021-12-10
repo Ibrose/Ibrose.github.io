@@ -169,7 +169,7 @@ As the raw scatter plot seemed to have linear correlation, we created linear reg
 We made a reference to Precision model to calculate accuracy of our recommendation system. The precision model is one of the models to evaluate efficiency of recommendation systems   
 <img src="https://user-images.githubusercontent.com/81448385/145175492-2a337ceb-45ee-42da-95ee-10d5906a931b.png"/>   
 
-Based on the Linear Equation derived from the Linear Regression using gradient descent, we assign ‘True’ if the y hat value of the equation is inside a set which consists of 3 pokemon with highest cosine similarities and ‘False’ otherwise. Therefore, accuracy can be measured by True divided by Total case. 
+Based on the Linear Equation derived from the Linear Regression using gradient descent, we assign ‘True’ if the y hat value of the equation is inside a set which consists of 3 pokemon with highest cosine similarities and ‘False’ otherwise. Therefore, accuracy can be measured by True divided by Total case.    
 <img src="https://user-images.githubusercontent.com/81448385/145533562-462a728b-c082-40a1-86fe-6890dbcd8986.PNG"/>   
 In each epoch, forpass()and backpropagation() repeatedly updates weight and bias, recalculating prediction and accuracy. The accuracy started as 1% and grows to 16% after 10 epochs
 
