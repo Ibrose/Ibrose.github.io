@@ -1,7 +1,7 @@
 # Ibrose.github.io
 **NUGU Pokemon Recommender for kids**   
 
-[Result video](https://youtu.be/UlHknIIg71Q)   
+[Result video](https://youtu.be/1IKGwm4xRZw)   
 [ppt used](https://hyu-my.sharepoint.com/:p:/g/personal/kyusubhwang_hanyang_ac_kr/EdO1q9WlNIBBu7ZbQtEGUswBT89sCPNouaG3Cy21a3p2fA?rtime=6zR8LK272Ug)    
 Collaborators:
 
@@ -189,5 +189,5 @@ Data Mining, 2012 Jiawei Han, Jian Pei
 
 # VI. Conclusion
 데모 동영상   
-[Result video](https://youtu.be/byCFJoSztUE)
+[Result video](https://youtu.be/UlHknIIg71Q)
 
